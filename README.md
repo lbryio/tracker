@@ -41,16 +41,16 @@ Configuration of the tracker is done via one YAML configuration file.
 The `dist/` directory contains an example configuration file.
 Files and directories under `docs/` contain detailed information about configuring middleware, storage implementations, architecture etc.
 
-This is an example for an UDP server running on 6969 with metrics enabled. Remember to **change the private key** to some random string.
+This is an example for an UDP server running on 9252 with metrics enabled. Remember to **change the private key** to some random string.
 
 ```
 ---
-tracker:
+chihaya:
   announce_interval: "30m"
   min_announce_interval: "15m"
   metrics_addr: "0.0.0.0:6880"
   udp:
-    addr: "0.0.0.0:6969"
+    addr: "0.0.0.0:9252"
     max_clock_skew: "10s"
     private_key: ">>>>CHANGE THIS TO SOME RANDOM THING<<<<"
     enable_request_timing: false
@@ -84,7 +84,7 @@ services:
     network_mode: host
     restart: always
 ```
-Unfortunately the tracker does not work without `network_mode: host` due some bug with UDP on Docker. In this mode, firewall configuration needs to be done manually. If using `ufw`, try `ufw allow 6969`.
+Unfortunately the tracker does not work without `network_mode: host` due some bug with UDP on Docker. In this mode, firewall configuration needs to be done manually. If using `ufw`, try `ufw allow 9252`.
 
 Now, move the configuration to the same directory as `docker-compose.yml`, naming it `conf.yml`. If it is not ready, check the configuration section above.
 
